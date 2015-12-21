@@ -36,7 +36,7 @@ class OutputCache:
         for each in generator:
             value = self._calc_checksum(each['bytes'])
             full_destination = self.directory + '/' + each['destination']
-            if self.cache[full_destination] == value:
+            if self.cache.get(full_destination) == value:
                 continue
 
             yield each
