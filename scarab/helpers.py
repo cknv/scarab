@@ -15,6 +15,6 @@ def determine_encoder(extension):
 
 def image_to_bytes(image, encoder):
     """Convert a PIL image to a sequence of bytes."""
-    b = io.BytesIO()
-    image.save(b, encoder)
-    return b
+    fake_file = io.BytesIO()
+    image.save(fake_file, encoder)
+    return fake_file.getvalue()
