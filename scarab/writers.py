@@ -2,18 +2,18 @@
 import os
 
 
-def bytes_writer(items, output_directory):
+def bytes_writer(pages, output_directory):
     """Write items to directory."""
-    for item in items:
-        full_destination = os.path.join(
+    for page in pages:
+        prefixed_path = os.path.join(
             output_directory,
-            item['destination'],
+            page.path,
         )
 
-        ensure_directory(full_destination)
-        print(full_destination)
-        with open(full_destination, 'bw+') as fo:
-            fo.write(item['bytes'])
+        ensure_directory(prefixed_path)
+        print(prefixed_path)
+        with open(prefixed_path, 'bw+') as fo:
+            fo.write(page.bytes)
 
 
 def ensure_directory(path):
