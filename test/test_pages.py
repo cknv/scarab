@@ -4,28 +4,26 @@ import hashlib
 from scarab import pages
 
 
-def test_page_class():
-    """Test page class test."""
+def test_single_page():
+    """Test the Page class simple behaviour."""
+    bytes_value = b'some bytes'
+    page_path = '/some/path/some.file'
+
     page = pages.Page(
-        '/some/path/some.file',
-        b'some bytes',
+        page_path,
+        bytes_value,
         other_key='other_value',
     )
 
-    assert page.checksum == hashlib.sha512(b'some bytes').hexdigest()
+    assert page.path == page_path
+    assert page.bytes == bytes_value
+
+    hexdigest = hashlib.sha512(bytes_value).hexdigest()
+    assert page.checksum == hexdigest
+    assert repr(page) == '<Page {} {}>'.format(
+        page_path,
+        hexdigest,
+    )
     assert page['other_key'] == 'other_value'
-    assert page.path == '/some/path/some.file'
-
-    page_set = {page}
-    assert page in page_set
-
-    page2 = pages.Page('/some/path/some/other.file', b'some bytes')
-    assert page2 != page
-    assert page2 not in page_set
-
-    page3 = pages.Page('/some/path/some.file', b'some bytes')
-    assert page3 != page
-    assert page3 not in page_set
-
     assert page != 'hey! a string?!'
     assert 'hey! another string?!' != page

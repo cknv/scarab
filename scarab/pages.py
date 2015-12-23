@@ -18,16 +18,15 @@ class Page:
 
     def __repr__(self):
         """Return the representation."""
-        return '<Page {}>'.format(self.path)
+        return '<Page {} {}>'.format(
+            self.path,
+            self.checksum,
+        )
 
     @property
     def checksum(self):
         """Return the checksum of the resource."""
         return hashlib.sha512(self.bytes).hexdigest()
-
-    def __hash__(self):
-        """Return the python hash of the page."""
-        return hash(self.path)
 
     def __eq__(self, other):
         """Check for equality."""
