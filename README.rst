@@ -13,3 +13,5 @@ Currently scarab is not distributed. So in order to get your hands on it, you wi
     git clone https://github.com/cknv/scarab
     cd scarab
     pip install -e .
+
+When I am more happy with the state of scarab, it will be published properly.
