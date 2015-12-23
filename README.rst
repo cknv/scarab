@@ -10,4 +10,6 @@ Currently scarab is not distributed. So in order to get your hands on it, you wi
 
 .. code:: shell
 
+    git clone https://github.com/cknv/scarab
+    cd scarab
     pip install -e .
