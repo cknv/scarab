@@ -23,6 +23,10 @@ class PreviewServer:
         """Serve forever, just like the inner server."""
         self._server.serve_forever()
 
+    def shutdown(self):
+        """Do a clean shutdown of the inner server."""
+        self._server.shutdown()
+
 
 class PreviewHandler(server.BaseHTTPRequestHandler):
 
