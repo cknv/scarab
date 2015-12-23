@@ -16,6 +16,10 @@ class Page:
         """Return items from the kwargs given."""
         return self._other_values[key]
 
+    def __repr__(self):
+        """Return the representation."""
+        return '<Page {}>'.format(self.path)
+
     @property
     def checksum(self):
         """Return the checksum of the resource."""
@@ -27,4 +31,11 @@ class Page:
 
     def __eq__(self, other):
         """Check for equality."""
-        return self.path
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        page_eq = self.path == other.path
+        bytes_eq = self.bytes == other.bytes
+        other_values_eq = self._other_values == other._other_values
+
+        return page_eq and bytes_eq and other_values_eq
