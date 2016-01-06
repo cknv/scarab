@@ -5,7 +5,6 @@ from .loaders import file_names
 
 
 class OutputCache:
-
     """Cache that helps filter away any files that are the same.
 
     Builds a cache from the directory it is given.

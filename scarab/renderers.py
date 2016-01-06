@@ -4,7 +4,6 @@ from jinja2 import FileSystemLoader
 
 
 class Renderer:
-
     """A simple template renderer."""
 
     def __init__(self, template_directory, site_globals):
