@@ -7,15 +7,14 @@ class Renderer:
 
     """A simple template renderer."""
 
-    def __init__(self, template_directory, site_globals):
+    def __init__(self, template_directory):
         """Make a new template renderer."""
         self.env = Environment(loader=FileSystemLoader(template_directory))
-        self.site_globals = site_globals
 
-    def __call__(self, page):
+    def __call__(self, page, **extras):
         """Render something."""
         template = self.env.get_template(page['template'])
-        return template.render(page=page, **self.site_globals)
+        return template.render(page=page, **extras)
 
     @property
     def filters(self):
