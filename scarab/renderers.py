@@ -11,9 +11,9 @@ class Renderer:
         """Make a new template renderer."""
         self.env = Environment(loader=FileSystemLoader(template_directory))
 
-    def __call__(self, page, **extras):
+    def __call__(self, page, template_name, **extras):
         """Render something."""
-        template = self.env.get_template(page['template'])
+        template = self.env.get_template(template_name)
         return template.render(page=page, **extras)
 
     @property
