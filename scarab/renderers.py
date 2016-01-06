@@ -21,3 +21,13 @@ class Renderer:
     def filters(self):
         """Expose the jinja filters for easy custom filters."""
         return self.env.filters
+
+    @property
+    def globals(self):
+        """Expose the jinja globals for easy extension."""
+        return self.env.globals
+
+    @property
+    def tests(self):
+        """Expose the jinja tests for easy extention."""
+        return self.env.tests
