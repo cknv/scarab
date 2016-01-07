@@ -9,7 +9,7 @@ class PreviewServer:
     def __init__(self, port):
         """Create a new PreviewServer."""
         server_address = ('localhost', port)
-        self._server = server.HTTPServer(server_address, PreviewHandler)
+        self._server = server.HTTPServer(server_address, _PreviewHandler)
         self._server.pages = {}
 
     def set_pages(self, pages):
@@ -28,7 +28,7 @@ class PreviewServer:
         self._server.shutdown()
 
 
-class PreviewHandler(server.BaseHTTPRequestHandler):
+class _PreviewHandler(server.BaseHTTPRequestHandler):
 
     """Handler for the PreviewServer."""
 
