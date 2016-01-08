@@ -1,9 +1,9 @@
 """Classes to represent pages for scarab."""
-import hashlib
 import base64
+import hashlib
+
 
 class Page:
-
     """A simple page, representing a page to be written."""
 
     def __init__(self, path, bytes_value, **kwargs):
@@ -15,6 +15,18 @@ class Page:
     def __getitem__(self, key):
         """Return items from the kwargs given."""
         return self._other_values[key]
+
+    def __setitem__(self, key, value):
+        """Set a value dict like."""
+        self._other_values[key] = value
+
+    def __contains__(self, key):
+        """Return if the key is in the page inner dict."""
+        return key in self._other_values
+
+    def __len__(self):
+        """Return the length of the inner dict."""
+        return len(self._other_values)
 
     def __repr__(self):
         """Return the representation."""

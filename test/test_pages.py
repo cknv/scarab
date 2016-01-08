@@ -2,6 +2,7 @@
 import hashlib
 
 import pytest
+
 from scarab import pages
 
 
@@ -28,6 +29,17 @@ def test_single_page():
     assert page['other_key'] == 'other_value'
     assert page != 'hey! a string?!'
     assert 'hey! another string?!' != page
+
+
+def test_page_extra_values():
+    """Test the dict like behaviour of a page."""
+    page = pages.Page('path', b'bytes')
+
+    assert 'key' not in page
+    page['key'] = 'value'
+    assert 'key' in page
+    assert page['key'] == 'value'
+    assert len(page) == 1
 
 
 def test_subresource_integrity_default():
