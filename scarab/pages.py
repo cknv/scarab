@@ -34,6 +34,14 @@ class Page:
         """Return the checksum of the resource."""
         return hashlib.sha512(self.bytes).hexdigest()
 
+    @property
+    def absolute_path(self):
+        """Return the absolute path of the page."""
+        if self.path.startswith('/'):
+            return self.path
+        else:
+            return '/' + self.path
+
     def __eq__(self, other):
         """Check for equality."""
         if not isinstance(other, type(self)):

@@ -5,3 +5,4 @@ from . import loaders
 from . import renderers
 from . import servers
 from . import writers
+from . import pages
