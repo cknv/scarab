@@ -1,6 +1,6 @@
 """Classes to represent pages for scarab."""
 import hashlib
-
+import base64
 
 class Page:
 
@@ -22,6 +22,12 @@ class Page:
             self.path,
             self.checksum,
         )
+
+    def subresource_integrity(self, algorithm='sha512'):
+        """Return the subresource integrity for the given algorithm."""
+        digest = hashlib.new(algorithm, self.bytes).digest()
+        sri = base64.b64encode(digest).decode('ascii')
+        return '{algorithm}-{sri}'.format(algorithm=algorithm, sri=sri)
 
     @property
     def checksum(self):
