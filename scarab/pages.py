@@ -31,17 +31,12 @@ class Page:
         """Return the representation."""
         return '<Page {} {}>'.format(
             self.path,
-            self.checksum,
+            hash(self.bytes),
         )
 
     def subresource_integrity(self, algorithm='sha512'):
         """Return the subresource integrity for the given algorithm."""
         return helpers.subresource_integrity(self.bytes, algorithm)
-
-    @property
-    def checksum(self):
-        """Return the checksum of the resource."""
-        return hashlib.sha512(self.bytes).hexdigest()
 
     @property
     def absolute_path(self):

@@ -20,11 +20,9 @@ def test_single_page():
     assert page.path == page_path
     assert page.bytes == bytes_value
 
-    hexdigest = hashlib.sha512(bytes_value).hexdigest()
-    assert page.checksum == hexdigest
     assert repr(page) == '<Page {} {}>'.format(
         page_path,
-        hexdigest,
+        hash(page.bytes),
     )
     assert page['other_key'] == 'other_value'
     assert page != 'hey! a string?!'
