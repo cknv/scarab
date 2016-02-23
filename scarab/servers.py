@@ -15,7 +15,7 @@ class PreviewServer:
     def set_pages(self, pages):
         """Set the servers pages."""
         self._server.pages = {
-            '/' + page['destination']: page['bytes']
+            page.absolute_path: page.bytes
             for page in pages
         }
 
