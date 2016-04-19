@@ -1,5 +1,7 @@
 Scarab
 ======
+.. image:: https://travis-ci.org/cknv/scarab.svg?branch=master
+    :target: https://travis-ci.org/cknv/scarab
 
 A small library of tools you might find handy when building a static site engine.
 
