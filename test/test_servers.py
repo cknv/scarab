@@ -6,10 +6,10 @@ from scarab import servers
 def test_preview_server():
     """Simple tests for the PreviewServer."""
     server = servers.PreviewServer(8000)
-    assert server._server.pages == {}
+    assert server.pages == {}
 
     pages = [
-        scarab.pages.Page('some/path', 'some bytes'),
+        scarab.pages.Page('some/path', b'some bytes'),
     ]
 
     server.set_pages(pages)
@@ -18,4 +18,4 @@ def test_preview_server():
         '/' + page.path: page.bytes
         for page in pages
     }
-    assert server._server.pages == simplified_pages
+    assert server.pages == simplified_pages

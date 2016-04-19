@@ -3,7 +3,6 @@ from http import server
 
 
 class PreviewServer:
-
     """A server for previewing pages locally."""
 
     def __init__(self, port):
@@ -11,6 +10,11 @@ class PreviewServer:
         server_address = ('localhost', port)
         self._server = server.HTTPServer(server_address, _PreviewHandler)
         self._server.pages = {}
+
+    @property
+    def pages(self):
+        """Return the internal servers pages."""
+        return self._server.pages
 
     def set_pages(self, pages):
         """Set the servers pages."""
@@ -29,7 +33,6 @@ class PreviewServer:
 
 
 class _PreviewHandler(server.BaseHTTPRequestHandler):
-
     """Handler for the PreviewServer."""
 
     def load_page(self, path):
@@ -39,7 +42,7 @@ class _PreviewHandler(server.BaseHTTPRequestHandler):
 
         return self.server.pages[path]
 
-    def do_GET(self):
+    def do_GET(self):  # pylint: disable=invalid-name
         """Handle GET requests."""
         try:
             content = self.load_page(self.path)
